@@ -1,0 +1,81 @@
+<div class="dashboard">
+  <div class="dashboard-header">
+    <h1>Gas Condensate Fields</h1>
+    <div class="dashboard-buttons">
+      <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+      <button mat-raised-button color="primary" (click)="openAddFieldDialog()">Add Field</button>
+    </div>
+  </div>
+
+  <!-- Map Section -->
+  <div class="dashboard-map">
+    <app-map [fields]="fields"></app-map>
+  </div>
+
+
+  <!-- Table Section -->
+  <div class="dashboard-table">
+    <div class="dashboard-filters">
+      <div class="filter-row">
+        <input type="text" placeholder="Field Name" [(ngModel)]="filterCriteria.fieldName" class="filter-input">
+        <input type="number" placeholder="Min Production Rate" [(ngModel)]="filterCriteria.productionRate" class="filter-input">
+        <input type="number" placeholder="Max Cost" [(ngModel)]="filterCriteria.cost" class="filter-input">
+        <input type="number" placeholder="Year of Extraction" [(ngModel)]="filterCriteria.yearOfExtraction" class="filter-input">
+        <input type="text" placeholder="Maintenance Type" [(ngModel)]="filterCriteria.maintenanceType" class="filter-input">
+        <button mat-raised-button color="primary" (click)="filterFields()">Filter</button>
+      </div>
+    </div>
+    <mat-table [dataSource]="fields">
+      <!-- Field Name Column -->
+      <ng-container matColumnDef="fieldName">
+        <mat-header-cell *matHeaderCellDef>Field Name</mat-header-cell>
+        <mat-cell *matCellDef="let field">{{ field.fieldName }}</mat-cell>
+      </ng-container>
+
+      <!-- Production Rate Column -->
+      <ng-container matColumnDef="productionRate">
+        <mat-header-cell *matHeaderCellDef>Production Rate</mat-header-cell>
+        <mat-cell *matCellDef="let field">{{ field.productionRate }} barrels/day</mat-cell>
+      </ng-container>
+
+      <!-- Cost Column -->
+      <ng-container matColumnDef="cost">
+        <mat-header-cell *matHeaderCellDef>Cost</mat-header-cell>
+        <mat-cell *matCellDef="let field">{{ field.cost | currency }}</mat-cell>
+      </ng-container>
+
+      <!-- Year of Extraction Column -->
+      <ng-container matColumnDef="yearOfExtraction">
+        <mat-header-cell *matHeaderCellDef>Year of Extraction</mat-header-cell>
+        <mat-cell *matCellDef="let field">{{ field.yearOfExtraction }}</mat-cell>
+      </ng-container>
+
+      <!-- Maintenance Type Column -->
+      <ng-container matColumnDef="maintenanceType">
+        <mat-header-cell *matHeaderCellDef>Maintenance Type</mat-header-cell>
+        <mat-cell *matCellDef="let field">{{ field.maintenanceType }}</mat-cell>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let field">
+          <button mat-icon-button color="primary" (click)="editField(field)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteField(field)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+
+  <!-- Search Component at the Bottom -->
+  <!-- <div class="dashboard-search">
+    <app-search></app-search>
+  </div> -->
+</div>

@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Edit Field' : 'Add Field' }}</h2>
+<form [formGroup]="fieldForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Field Name</mat-label>
+    <input matInput formControlName="fieldName" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Latitude</mat-label>
+    <input matInput formControlName="latitude" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Longitude</mat-label>
+    <input matInput formControlName="longitude" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Production Rate</mat-label>
+    <input matInput formControlName="productionRate" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Cost</mat-label>
+    <input matInput formControlName="cost" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Year of Extraction</mat-label>
+    <input matInput formControlName="yearOfExtraction" required />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Maintenance Type</mat-label>
+    <input matInput formControlName="maintenanceType" required />
+  </mat-form-field>
+
+  <div class="button-container">
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">
+      {{ isEditMode ? 'Update' : 'Add' }}
+    </button>
+  </div>
+</form>

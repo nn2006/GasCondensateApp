@@ -1,0 +1,26 @@
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Adds space between fields */
+  }
+  
+  .row {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .half-width {
+    width: 48%;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px 0;
+  }
+  
